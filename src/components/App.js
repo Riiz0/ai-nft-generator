@@ -3,28 +3,22 @@ import { NFTStorage, File } from 'nft.storage'
 import { Buffer } from 'buffer';
 import { ethers } from 'ethers';
 import axios from 'axios';
-import logo from '../assets/logo.svg';
-import '../App.css';
+
+//Components
 import Footer from './Footer.js';
 import Mint from './Mint.js';
 import Navbar from './Navbar.js';
 
+//ABIs
+//import AINFT from '../abis/AINFT.json'
+
 function App() {
   return (
 
-  // <div>
-  //   <Navbar />
+  <div>
+  {/* <Navbar /> */}
+  </div>
 
-  //   <Mint />
-
-  //   <Footer />
-  // </div>
-    <div className="App">
-    
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-    </div>
   );
 }
 
