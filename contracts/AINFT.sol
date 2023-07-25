@@ -15,7 +15,7 @@ contract AINFT is ERC721URIStorage, Ownable {
 
     constructor() ERC721("AINFT", "ANFT") {}
 
-    function mint(string memory tokenURI) 
+    function mint(string memory uri) 
     public payable
     {
         require(msg.value >= cost);
@@ -24,7 +24,7 @@ contract AINFT is ERC721URIStorage, Ownable {
 
         uint256 newTokenId = _tokenIds.current();
         _mint(msg.sender, newTokenId);
-        _setTokenURI(newTokenId, tokenURI);
+        _setTokenURI(newTokenId, uri);
     }
 
     function burn(uint256 newTokenId) 
@@ -32,12 +32,11 @@ contract AINFT is ERC721URIStorage, Ownable {
     {
         require(_exists(newTokenId), "Token does not exist");
         require(ownerOf(newTokenId) == msg.sender, "You are not the owner of this token");
-    
         _burn(newTokenId);
     }
 
     function tokenURI(uint256 newTokenId) 
-    public view override (ERC721, ERC721URIStorage)
+    public view override (ERC721URIStorage)
     returns(string memory)
     {
         return super.tokenURI(newTokenId);
@@ -48,7 +47,8 @@ contract AINFT is ERC721URIStorage, Ownable {
     }
 
     function withdraw() public {
-        require(msg.sender == );
-
+        require(msg.sender == owner(), "Only the contract owner can withdraw");
+        (bool success, ) = owner().call{value: address(this).balance}("");
+        require(success, "Withdrawal failed");
     }
 }
