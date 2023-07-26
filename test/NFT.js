@@ -141,7 +141,7 @@ describe('Withdraw', () => {
         //Check The Contracts Initial Balance
         expect(await ethers.provider.getBalance(nft.address)).to.equal(COST)
 
-        //Withdraw The Contracts Balance By The Ownre (deployer)
+        //Withdraw The Contracts Balance By The Owner (deployer)
         await nft.withdraw()
 
         //Check The Contracts Balance After Withdrawal
