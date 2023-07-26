@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
 /* 
 Contract definition for NFT (AI Art NFT)
@@ -69,7 +69,6 @@ Function to burn (destroy) an existing NFT owned by the sender
     {
         require(_isApprovedOrOwner(_msgSender(), tokenId), "Caller is not owner");
         super._burn(tokenId);
-        _tokenIds.decrement();
     }
 
 
