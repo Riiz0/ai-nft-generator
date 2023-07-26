@@ -14,12 +14,15 @@ Contract definition for NFT (AI Art NFT)
 -Counter to keep track of token IDs and total supply
 -The cost to mint a new NFT, set by the contract creator
 -Constructor function to initialize the contract
+-Define the Mint event
 */
 contract NFT is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
     uint256 public cost;
+
+    event Mint(uint256 tokenId);
 
     constructor(
         string memory _name,
@@ -48,6 +51,8 @@ Function to mint a new NFT with the given URI
         uint256 newItemId = _tokenIds.current();
         _mint(msg.sender, newItemId);
         _setTokenURI(newItemId, tokenURI);
+
+        emit Mint(newItemId); // Emit the Mint event
     }
 
 
@@ -57,12 +62,14 @@ Function to burn (destroy) an existing NFT owned by the sender
 -Require that the token with the given ID exists
 -Require that the sender is the owner of the token
 -Burn (destroy) the NFT with the given token ID
+-Decrement the token ID counter
 */
     function burn(uint256 tokenId) 
     public 
     {
         require(_isApprovedOrOwner(_msgSender(), tokenId), "Caller is not owner");
-        _burn(tokenId);
+        super._burn(tokenId);
+        _tokenIds.decrement();
     }
 
 
