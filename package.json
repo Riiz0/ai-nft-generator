@@ -1,17 +1,17 @@
 {
-  "name": "ai-art-generator",
+  "name": "ai_nft_generator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@openzeppelin/contracts": "^4.9.2",
-    "@testing-library/jest-dom": "^5.17.0",
+    "@openzeppelin/contracts": "^4.8.0",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.4.0",
+    "axios": "^1.2.2",
     "bootstrap": "^5.2.3",
     "buffer": "^6.0.3",
     "dotenv": "^16.0.3",
-    "nft.storage": "^7.1.1",
+    "nft.storage": "^7.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
@@ -43,7 +43,7 @@
     ]
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
-    "hardhat": "^2.17.0"
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "hardhat": "^2.12.5"
   }
 }
