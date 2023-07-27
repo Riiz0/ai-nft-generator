@@ -1,9 +1,7 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Play:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
 
 * {
   margin: 0;
@@ -146,6 +144,29 @@ nav {
   }
 
   /* Add any specific styles for screens with a width up to 1440px */
+}
+
+@media screen and (max-width: 1280px) {
+  .mint-container {
+      margin: 30px auto; /* Adjust the top and bottom margin for smaller screens */
+    }
+  
+    .left-column,
+    .right-column {
+      display: none; /* Hide the left and right columns for smaller screens */
+    }
+  
+    .nav-line {
+      width: calc(100% - 60px); /* Adjust the width for smaller screens */
+      left: 30px; /* Adjust the distance from the left edge for smaller screens */
+      top: 120px;
+  
+    }
+    .footer-line {
+      width: calc(100% - 60px); /* Adjust the width for smaller screens */
+      left: 30px; /* Adjust the distance from the left edge for smaller screens */
+      bottom: auto;
+    }
 }
 
 @media screen and (max-width: 1024px) {
