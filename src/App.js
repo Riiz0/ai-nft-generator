@@ -32,11 +32,21 @@ function App() {
   },[])
 
   return (
-    
       <div className="app-container">
+
         <Navbar account={account} setAccount={setAccount} />
-        
+
+        <div className="nav-line"></div>
+
+        <div className="left-column"></div>
+
+        <div className="content-container">
         <Mint />
+        </div>
+        
+        <div className="right-column"></div>
+        <div className="footer-line"></div>
+        
 
         <Footer />
 

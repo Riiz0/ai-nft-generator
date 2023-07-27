@@ -4,12 +4,12 @@ const Mint = () => {
         <div className="input-boxes">
           {/* Box - Topic Input */}
           <form>
-            <input type="text" placeholder="Enter your topic" />
+            <input type="text" placeholder="Create topic..." />
           </form>
   
           {/* Box - Description Input */}
           <form>
-            <textarea name="description" placeholder="Describe your topic"></textarea>
+            <textarea name="description" placeholder="Create a Description..."></textarea>
           </form>
   
           {/* Box - Create and Mint Button */}

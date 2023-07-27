@@ -1,3 +1,4 @@
+import logo from '../assets/logo.png'
 import { ethers } from 'ethers';
 
 const Navbar = ({ account, setAccount }) => {
@@ -10,6 +11,7 @@ const Navbar = ({ account, setAccount }) => {
 return (
     <nav>
     <div className='nav__brand'>
+    <img src={logo} alt="Logo" className="logo" />
         <h1>AI NFT Generator</h1>
     </div>
 
