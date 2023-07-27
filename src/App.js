@@ -1,19 +1,22 @@
+
+
 import { useState, useEffect } from 'react';
 import { NFTStorage, File } from 'nft.storage'
 import { Buffer } from 'buffer';
 import { ethers } from 'ethers';
 import axios from 'axios';
 
+
 //Components
-import Footer from './Footer.js';
-import Mint from './Mint.js';
-import Navbar from './Navbar.js';
+import Footer from './components/Footer.js';
+import Mint from './components/Mint.js';
+import Navbar from './components/Navbar.js';
 
 //ABIs
-import NFT from '../abis/NFT.json'
+import NFT from './abis/NFT.json'
 
 // Config
-import config from '../config.json';
+import config from './config.json';
 
 function App() {
   const [provider, setProvider] = useState(null)
@@ -29,10 +32,15 @@ function App() {
   },[])
 
   return (
-  <div>
-    {<Navbar account={account} setAccount={setAccount} />}
-    <p>Edit App.js to get started!</p>
-  </div>
+    
+      <div className="app-container">
+        <Navbar account={account} setAccount={setAccount} />
+        
+        <Mint />
+
+        <Footer />
+
+      </div>
   );
 }
 
