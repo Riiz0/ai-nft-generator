@@ -4,15 +4,21 @@ import { Buffer } from 'buffer';
 import { NFTStorage, File } from 'nft.storage'
 
 const Mint = () => {
-  const [topic, setTopic] = useState("")
+  const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [image, setImage] = useState("")
+  const [url, setURL] = useState("")
   
   const submitHandler = async (e) => {
     e.preventDefault()
 
     //Calling AI API to generate a image based on description
     const imageData = createImage()
+
+    //upload image to IPFS (NFT.Storage)
+    const url = await uploadImage(imageData)
+
+    console.log("url", url)
   }
 
   const uploadImage = async (imageData) => {
@@ -21,6 +27,18 @@ const Mint = () => {
     //Create instance to NFT.Storage
    const nftstorage = new NFTStorage({ token: process.env.REACT_APP_NFT_STORAGE_API_KEY })
 
+   //Send request to store image
+   const { ipnft } = await nftstorage.store({
+    image: new File([imageData], "image.jpeg", { type: "image/jpeg" }),
+    name: name,
+    description: description,
+   })
+
+   //Save the URL
+   const url = `https://ipfs.io/ipfs/${ipnft}/metadata.json`
+   setURL(url)
+
+   return url
   }
 
   const createImage = async () => {
@@ -56,7 +74,7 @@ const Mint = () => {
       <div className="mint-container">
         <div className="input-boxes">
           <form onSubmit={submitHandler}>
-            <input type="text" placeholder="Create a Topic..." onChange={(e) => {setTopic(e.target.value)}}/>
+            <input type="text" placeholder="Create a Name..." onChange={(e) => {setName(e.target.value)}}/>
             <textarea name="description" placeholder="Create a Description..."onChange={(e) => {setDescription(e.target.value)}}></textarea>
             <input type="submit" value="Create and Mint" />
           </form>
@@ -65,7 +83,16 @@ const Mint = () => {
         <div className="image">
           <img src={image} alt="AI Generated NFT Image" />
         </div>
+
+      <div className="view-metadata-link-container">
+        <p>
+          View&nbsp; 
+          <a href={url} target="_blank" rel="noreferrer">
+          Metadata
+          </a>
+        </p>
       </div>
+    </div>
     );
   }
   

@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
-import { NFTStorage, File } from 'nft.storage'
-import { Buffer } from 'buffer';
 import { ethers } from 'ethers';
-import axios from 'axios';
 
 
 //Components
-import Footer from './components/Footer.js';
+//import Footer from './components/Footer.js';
 import Mint from './components/Mint.js';
 import Navbar from './components/Navbar.js';
 
@@ -44,9 +41,6 @@ function App() {
         
         <div className="right-column"></div>
         <div className="footer-line"></div>
-        
-
-        <Footer />
 
       </div>
   );

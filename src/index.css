@@ -61,8 +61,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  flex-direction: column; /* Change flex-direction to column */
   position: relative;
   z-index: 2; /* Add a higher z-index to place the content above the borders */
+  margin-bottom: 60px; /* Add spacing between the Mint component and the link */
 }
 
 /* Position the left and right columns */
@@ -332,6 +334,26 @@ form textarea {
   resize: vertical; /* Allow vertical resizing of the textarea */
 }
 
+p {
+  width: 175px;
+  height: 50px;
+  margin: 0 auto;
+
+  background-color: var(--clr-blue);
+  color: var(--clr-white);
+
+  border: none;
+  border-radius: 25px; /* Add rounded edges */
+  padding: 0 20px; /* Adjust padding for rounded appearance */
+
+  font-family: "Crimson Text-Regular", Helvetica, sans-serif; /* Change the font-family */
+  font-size: 1.10em;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 250ms ease;
+}
+
 form input[type="submit"] {
   background-color: var(--clr-blue);
   color: var(--clr-white);
@@ -356,34 +378,27 @@ form input[type="submit"]:hover {
   background-color: var(--clr-blue-2);
 }
 
-/* Footer.js styles */
-.footer-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px; /* Adjust the margin as needed */
-  position: relative;
+/* Add this CSS for the view-metadata-link-container */
+.view-metadata-link-container {
+  position: absolute;
+  bottom: -30px; /* Adjust this value to control the distance from the bottom */
 }
 
-.view-metadata-btn {
-  background-color: var(--clr-blue);
-  color: var(--clr-white);
+.view-metadata-link-container p {
+  margin: 0; /* Remove any default margin on the paragraph element */
+}
 
-  width: 175px;
-  height: 50px;
-  padding: 0 20px;
-
-  border: none;
-  border-radius: 25px;
-
+.view-metadata-link-container a {
+  color: var(--clr-white); /* Change the link color if needed */
+  text-decoration: none; /* Remove underline from the link */
   font-family: "Play";
   font-size: 1.10em;
   font-weight: 600;
-
   cursor: pointer;
   transition: all 250ms ease;
 }
 
-.view-metadata-btn:hover {
+.view-metadata-link-container :hover {
   background-color: var(--clr-blue-2);
 }
 
