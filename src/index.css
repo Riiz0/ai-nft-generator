@@ -1,7 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Play:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 * {
   margin: 0;
@@ -10,11 +7,10 @@
 }
 
 :root {
-  --clr-white: #ffffff;      /* Keep it as white */
-  --clr-black: #202020;      /* Keep it as black */
-  --clr-blue: #2E89A8 ;       /* New color for blue */
-  --clr-blue-2: #365960 ;     /* New color for blue-2 */
-  --clr-Border: #0D121A;
+  --clr-white: #FFFFFF;
+  --clr-black: #202020;
+  --clr-blue: #6C63FF;
+  --clr-blue-2: #4c46b6;
 }
 
 body {
@@ -24,222 +20,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.app-container {
-  background-color: #1E2532;
-  min-height: 100vh; /* Set the minimum height to 100vh */
-  position: relative;
-  overflow: hidden; /* Hide overflowing content to prevent unwanted horizontal scrollbar */
-}
-
-.mint-container {
-  /* Update the mint container styles to display content properly */
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; /* Align content at the top of the container */
-  flex-wrap: wrap;
-  max-width: 1000px;
-  margin: 60px auto; /* Adjust the top and bottom margin as needed */
-}
-
-.input-boxes {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  max-width: 250px;
-}
-
-.logo {
-  width: 62px; /* Adjust the width as per your desired size */
-  height: auto; /* This will maintain the aspect ratio of the logo */
-  margin-right: 10px; /* Add some spacing between the logo and the text */
-  border-radius: 10px; /* Add rounded edges to the logo */
-}
-
-.content-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column; /* Change flex-direction to column */
-  position: relative;
-  z-index: 2; /* Add a higher z-index to place the content above the borders */
-  margin-bottom: 60px; /* Add spacing between the Mint component and the link */
-}
-
-/* Position the left and right columns */
-.left-column,
-.right-column {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 10%;
-  box-sizing: border-box;
-  border: 2px solid var(--clr-Border);
-  background-color: var(--clr-Border);
-  z-index: 1; /* Ensure the borders appear behind the content */
-}
-
-.left-column {
-  left: 0;
-}
-
-.right-column {
-  right: 0;
-}
-
 /* ------------------------------------------------------ */
 /* -- NAVIGATION -- */
+.logo {
+  /* Add any other styles you have for the logo */
+
+  /* Set the width and height of the logo to make it smaller */
+  width: 50px; /* Adjust this value as needed */
+  height: 50px; /* Adjust this value as needed */
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--clr-blue);
+}
 
 nav {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
-  position: relative;
-}
-
-.nav-line {
-  width: calc(100% - 600px); /* Adjust the width to create spacing from edges */
-  height: 2px;
-  background: linear-gradient(to right, var(--clr-blue) 0%, var(--clr-blue-2) 100%);
-  border-radius: 2px;
-  position: absolute;
-  top: 115.19px; /* Adjust this value to control the distance from the navbar */
-  left: 300px; /* Align the line to the left edge with some padding */
-  z-index: 1; /* Set a higher z-index to place the line above other content */
-}
-
-
-/* Footer.js CSS */
-.footer-line {
-  width: calc(100% - 600px); /* Adjust the width to create spacing from edges */
-  height: 2px;
-  background: linear-gradient(to right, var(--clr-blue) 0%, var(--clr-blue-2) 100%);
-  border-radius: 2px;
-  position: absolute;
-  bottom: auto; /* Adjust this value to control the distance from the bottom */
-  left: 300px; /* Align the line to the left edge with some padding */
-  z-index: 1; /* Set a higher z-index to place the line above other content */
-}
-
-/* For larger screens (e.g., desktop) */
-@media screen and (max-width: 1440px) {
-  .mint-container {
-    margin: 30px auto; /* Adjust the top and bottom margin for smaller screens */
-  }
-
-  .left-column,
-  .right-column {
-    display: none; /* Hide the left and right columns for smaller screens */
-  }
-
-  .nav-line {
-    width: calc(100% - 60px); /* Adjust the width for smaller screens */
-    left: 30px; /* Adjust the distance from the left edge for smaller screens */
-    top: 170px;
-
-  }
-  .footer-line {
-    width: calc(100% - 60px); /* Adjust the width for smaller screens */
-    left: 30px; /* Adjust the distance from the left edge for smaller screens */
-    bottom: auto;
-  }
-
-  /* Add any specific styles for screens with a width up to 1440px */
-}
-
-@media screen and (max-width: 1280px) {
-  .mint-container {
-      margin: 30px auto; /* Adjust the top and bottom margin for smaller screens */
-    }
-  
-    .left-column,
-    .right-column {
-      display: none; /* Hide the left and right columns for smaller screens */
-    }
-  
-    .nav-line {
-      width: calc(100% - 60px); /* Adjust the width for smaller screens */
-      left: 30px; /* Adjust the distance from the left edge for smaller screens */
-      top: 120px;
-  
-    }
-    .footer-line {
-      width: calc(100% - 60px); /* Adjust the width for smaller screens */
-      left: 30px; /* Adjust the distance from the left edge for smaller screens */
-      bottom: auto;
-    }
-}
-
-@media screen and (max-width: 1024px) {
-  .mint-container {
-    margin: 30px auto; /* Adjust the top and bottom margin for smaller screens */
-  }
-
-  .left-column,
-  .right-column {
-    display: none; /* Hide the left and right columns for smaller screens */
-  }
-
-  .nav-line {
-    width: calc(100% - 60px); /* Adjust the width for smaller screens */
-    left: 30px; /* Adjust the distance from the left edge for smaller screens */
-    top: 170px;
-
-  }
-  .footer-line {
-    width: calc(100% - 60px); /* Adjust the width for smaller screens */
-    left: 30px; /* Adjust the distance from the left edge for smaller screens */
-    bottom: auto;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .mint-container {
-    margin: 30px auto; /* Adjust the top and bottom margin for smaller screens */
-  }
-
-  .left-column,
-  .right-column {
-    display: none; /* Hide the left and right columns for smaller screens */
-  }
-
-  .nav-line {
-    width: calc(100% - 60px); /* Adjust the width for smaller screens */
-    left: 30px; /* Adjust the distance from the left edge for smaller screens */
-    top: 170px;
-
-  }
-  .footer-line {
-    width: calc(100% - 60px); /* Adjust the width for smaller screens */
-    left: 30px; /* Adjust the distance from the left edge for smaller screens */
-    bottom: auto;
-  }
-  /* Add any specific styles for screens with a width up to 768px */
-}
-
-@media screen and (max-width: 480px) {
-  .mint-container {
-    margin: 30px auto; /* Adjust the top and bottom margin for smaller screens */
-  }
-
-  .left-column,
-  .right-column {
-    display: none; /* Hide the left and right columns for smaller screens */
-  }
-
-  .nav-line {
-    width: calc(100% - 60px); /* Adjust the width for smaller screens */
-    left: 30px; /* Adjust the distance from the left edge for smaller screens */
-    top: 170px;
-
-  }
-  .footer-line {
-    width: calc(100% - 60px); /* Adjust the width for smaller screens */
-    left: 30px; /* Adjust the distance from the left edge for smaller screens */
-    bottom: auto;
-  }
-  /* Add any specific styles for screens with a width up to 480px */
 }
 
 .nav__brand {
@@ -251,10 +48,9 @@ nav {
 }
 
 .nav__brand h1 {
-  font-family: "Play";
   color: var(--clr-blue);
-  font-size: 3.5em;
-  font-weight: 450;
+  font-size: clamp(1.75em, 4vw, 2.5em);
+  font-weight: 800;
 }
 
 .nav__connect {
@@ -266,19 +62,14 @@ nav {
   color: var(--clr-white);
 
   border: none;
-  border-radius: 25px; /* Add rounded edges */
-  padding: 0 20px; /* Adjust padding for rounded appearance */
+  border-radius: 4px;
 
-  font-family: "Crimson Text-Regular", Helvetica, sans-serif; /* Change the font-family */
+  font-family: "Play";
   font-size: 1.10em;
   font-weight: 600;
 
   cursor: pointer;
   transition: all 250ms ease;
-}
-
-.nav__connect:hover {
-  background-color: var(--clr-blue-2);
 }
 
 .nav__connect:hover {
@@ -292,9 +83,8 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  margin: 10px;
-  max-width: 250px;
+
+  min-height: 600px;
 }
 
 form {
@@ -309,49 +99,13 @@ form {
 form input[type="text"] {
   width: 250px;
   height: 50px;
-  margin: 100px 0;
+  margin: 10px 0;
   padding: 10px;
 
   border: 1px solid var(--clr-blue);
   border-radius: 4px;
 
   font-size: 1.10em;
-
-  /* Add box-sizing property to include padding and border in the specified width and height */
-  box-sizing: border-box;
-}
-
-form textarea {
-  width: 250px;
-  height: 175px; /* Increase the height to accommodate more text */
-  margin: -75px 0;
-  padding: 10px;
-
-  border: 1px solid var(--clr-blue);
-  border-radius: 4px;
-
-  font-size: 1.10em;
-  resize: vertical; /* Allow vertical resizing of the textarea */
-}
-
-p {
-  width: 175px;
-  height: 50px;
-  margin: 0 auto;
-
-  background-color: var(--clr-blue);
-  color: var(--clr-white);
-
-  border: none;
-  border-radius: 25px; /* Add rounded edges */
-  padding: 0 20px; /* Adjust padding for rounded appearance */
-
-  font-family: "Crimson Text-Regular", Helvetica, sans-serif; /* Change the font-family */
-  font-size: 1.10em;
-  font-weight: 600;
-
-  cursor: pointer;
-  transition: all 250ms ease;
 }
 
 form input[type="submit"] {
@@ -360,11 +114,11 @@ form input[type="submit"] {
 
   width: 250px;
   height: 50px;
-  margin: 100px 0;
-  padding: 0 20px;
+  margin: 10px 0;
+  padding: 10px;
 
   border: none;
-  border-radius: 25px;
+  border-radius: 4px;
 
   font-family: "Play";
   font-size: 1.10em;
@@ -378,45 +132,27 @@ form input[type="submit"]:hover {
   background-color: var(--clr-blue-2);
 }
 
-/* Add this CSS for the view-metadata-link-container */
-.view-metadata-link-container {
-  position: absolute;
-  bottom: -30px; /* Adjust this value to control the distance from the bottom */
-}
-
-.view-metadata-link-container p {
-  margin: 0; /* Remove any default margin on the paragraph element */
-}
-
-.view-metadata-link-container a {
-  color: var(--clr-white); /* Change the link color if needed */
-  text-decoration: none; /* Remove underline from the link */
-  font-family: "Play";
-  font-size: 1.10em;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 250ms ease;
-}
-
-.view-metadata-link-container :hover {
-  background-color: var(--clr-blue-2);
-}
-
 /* ------------------------------------------------------ */
 /* -- IMAGE -- */
 
 .image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  max-width: 90%;
   width: 512px;
   height: 512px;
-  margin: 10px;
+  margin: 0 25px;
   border: 3px solid var(--clr-blue);
   border-radius: 4px;
+
   overflow: hidden;
 }
 
 .image img {
-  width: 100%;
-  height: 100%;
+  width: 512px;
+  height: 512px;
   border-radius: 6px;
 }
 
@@ -440,6 +176,6 @@ p {
 
 @media screen and (max-width: 768px) {
   .form {
-    max-width: 100%;
+    flex-direction: column;
   }
 }
