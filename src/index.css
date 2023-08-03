@@ -108,6 +108,20 @@ form input[type="text"] {
   font-size: 1.10em;
 }
 
+form textarea {
+  width: 250px;
+  height: 150px; /* Increase the height to accommodate more text */
+  margin: 10px 0;
+  padding: 10px;
+
+  border: 1px solid var(--clr-blue);
+  border-radius: 4px;
+
+  font-size: 1.10em;
+  resize: none; /* Prevent the textarea from being resized by the user */
+  text-align: left; /* Align the text at the top left */
+  white-space: normal; /* Allow text to wrap and move down after reaching the right edge */
+}
 form input[type="submit"] {
   background-color: var(--clr-blue);
   color: var(--clr-white);

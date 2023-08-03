@@ -130,15 +130,14 @@ function App() {
       <div className='form'>
         <form onSubmit={submitHandler}>
           <input type="text" placeholder="Create a Name..." onChange={(e) => { setName(e.target.value) }} />
-          <input type="text" placeholder="Create a Description..." onChange={(e) => setDescription(e.target.value)} />
+          <textarea placeholder="Create a Description..." onChange={(e) => setDescription(e.target.value)} />
           <input type="submit" value="Create & Mint" />
         </form>
 
         <div className="image">
-          { !isWaiting && image ? (
+          {!isWaiting && image ? (
             <img src={image} alt="AI Generated Image" />
           ): isWaiting ? (
-
             <div className="image__placeholder">
             <Spinner animation="border" />
             <p>{message}</p>
@@ -146,11 +145,9 @@ function App() {
           ) : (
             <></>
           )}
-            <div className="image__placeholder">
             </div>
         </div>
 
-      </div>
       {!isWaiting && url && (
         <p>
         View&nbsp;<a href={url} target="_blank" rel="noreferrer">Metadata</a>
