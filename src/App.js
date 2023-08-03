@@ -47,8 +47,8 @@ function App() {
     const url = await uploadImage(imageData)
 
     //Mint NFT
-    // await mintImage(url)
-    // console.log("Success!")
+    await mintImage(url)
+    console.log("Success!")
   }
 
   const createImage = async () => {
@@ -100,13 +100,13 @@ function App() {
    return url
   }
 
-  // const mintImage = async (tokenURI) => {
-  //   console.log("Waiting for Mint...")
+  const mintImage = async (tokenURI) => {
+    console.log("Waiting for Mint...")
     
-  //   const signer = await provider.getSigner()
-  //   const transaction = await nft.connect(signer).mint(tokenURI, { value: ethers.utils.parseUnits("1", "ether") })
-  //   await transaction.wait()
-  // }
+    const signer = await provider.getSigner()
+    const transaction = await nft.connect(signer).mint(tokenURI, { value: ethers.utils.parseUnits("1", "ether") })
+    await transaction.wait()
+  }
 
   useEffect(() => {
     loadBlockchainData()
