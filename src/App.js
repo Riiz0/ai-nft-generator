@@ -3,6 +3,7 @@ import { NFTStorage, File } from 'nft.storage'
 import { Buffer } from 'buffer';
 import { ethers } from 'ethers';
 import axios from 'axios';
+import { Spinner } from 'react-bootstrap';
 
 //Components
 import Navbar from './components/Navbar.js';
@@ -23,6 +24,10 @@ function App() {
   const [image, setImage] = useState("null")
   const [url, setURL] = useState("null")
 
+  const[message, setMessage] = useState("")
+  const[isWaiting, setIsWaiting] = useState(false)
+
+
   const loadBlockchainData = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     setProvider(provider)
@@ -33,26 +38,32 @@ function App() {
     setNFT(nft)
 
     const name = await nft.name()
-    console.log("name", name)
-
   }
 
   const submitHandler = async (e) => {
     e.preventDefault()
+
+      if (name === "" || description === "") {
+        window.alert("Please provide a Name and Description")
+        return
+      }
+
+      setIsWaiting(true)
 
     // //Calling AI API to generate a image based on description
     const imageData = await createImage()
 
     // //upload image to IPFS (NFT.Storage)
     const url = await uploadImage(imageData)
+    setIsWaiting(false)
 
     //Mint NFT
     await mintImage(url)
-    console.log("Success!")
+    setMessage("")
   }
 
   const createImage = async () => {
-    console.log("Generating Image...")
+    setMessage("Generating Image...")
 
     const URL = `https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2-1`
 
@@ -81,7 +92,7 @@ function App() {
   }
 
   const uploadImage = async (imageData) => {
-    console.log("Upload Image...")
+    setMessage("Upload Image...")
     
     //Create instance to NFT.Storage
    const nftstorage = new NFTStorage({ token: process.env.REACT_APP_NFT_STORAGE_API_KEY })
@@ -101,7 +112,7 @@ function App() {
   }
 
   const mintImage = async (tokenURI) => {
-    console.log("Waiting for Mint...")
+    setMessage("Waiting for Mint...")
     
     const signer = await provider.getSigner()
     const transaction = await nft.connect(signer).mint(tokenURI, { value: ethers.utils.parseUnits("1", "ether") })
@@ -124,15 +135,27 @@ function App() {
         </form>
 
         <div className="image">
-            <img src={image}/>
+          { !isWaiting && image ? (
+            <img src={image} alt="AI Generated Image" />
+          ): isWaiting ? (
 
+            <div className="image__placeholder">
+            <Spinner animation="border" />
+            <p>{message}</p>
+            </div>
+          ) : (
+            <></>
+          )}
             <div className="image__placeholder">
             </div>
         </div>
+
       </div>
+      {!isWaiting && url && (
         <p>
-          View&nbsp;<a href={url} target="_blank" rel="noreferrer">Metadata</a>
-        </p>
+        View&nbsp;<a href={url} target="_blank" rel="noreferrer">Metadata</a>
+      </p>
+      )}
     </div>
   );
 }
