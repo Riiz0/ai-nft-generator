@@ -1,6 +1,5 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
-const privateKeys = process.env.PRIVATE_KEY || ""
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -17,9 +16,5 @@ module.exports = {
   solidity: "0.8.17",
   networks: {
     localhost: {},
-    sepolia: {
-      url: `https://sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`,
-      accounts: privateKeys.split(','),
-    }
   }
 };
