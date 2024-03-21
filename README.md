@@ -1,70 +1,84 @@
-# Getting Started with Create React App
+# AI NFT Generator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Link: https://ai-nft-generator-orcin.vercel.app/
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+AI NFT Generator is a decentralized application (DApp) that leverages artificial intelligence (AI) to generate unique NFTs based on user descriptions. This project combines the power of blockchain technology with AI to create a unique and engaging experience for users interested in digital art and collectibles.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- AI-Generated Art: Utilizes an AI model to generate unique images based on user descriptions.
+- NFT Minting: Allows users to mint their AI-generated art as NFTs on the Ethereum blockchain.
+- IPFS Storage: Stores the generated images on IPFS using NFT.Storage, ensuring decentralized and permanent storage.
+- ERC721 Compliance: Minted NFTs are compliant with the ERC721 standard, making them compatible with various Ethereum-based services and marketplaces.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Usage
 
-### `npm test`
+1. Connect Wallet: Connect your MetaMask wallet to the DApp.
+2. Create NFT: Enter a description for your NFT. The AI will generate an image based on your description.
+3. Mint NFT: Once you're satisfied with the generated image, click "Create & Mint" to mint your NFT.
+4. View Metadata: After minting, you can view the metadata of your NFT by clicking the provided link.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `Smart Contract`
 
-### `npm run build`
+The smart contract for this project is an ERC721 compliant contract that allows for the minting of NFTs. It includes functions for minting new NFTs, burning existing NFTs, and retrieving the metadata URI for a given token ID.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `Axios and Stable Diffusion Integration`
+The `createImage` function is a crucial part of your application, leveraging Axios to make HTTP requests to the Stable Diffusion API. This function is responsible for generating unique images based on user descriptions, showcasing the power of AI in creating art.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `How It Works`
+1. Initialization: The function starts by setting a message to indicate that the image generation process has begun.
+2. API Request: It constructs a URL for the Stable Diffusion API endpoint and prepares an Axios request. The request includes:
+    - The URL of the Stable Diffusion API.
+    - The HTTP method set to POST.
+    - Headers containing the authorization token for the Hugging Face API, specifying the content type as JSON.
+    - The request body, which is a JSON string containing the user's description and options for the AI model.
+3. Response Handling: Upon receiving a response from the API, the function extracts the content type and the image data from the response. It then converts the image data to a base64-encoded string and constructs an image URL. This URL is used to display the generated image in the application.
+4. State Update: The function updates the application's state with the generated image URL, allowing the user to see the result of their description.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `Example Code`
+```
+const createImage = async () => {
+ setMessage("Generating Image...");
 
-### `npm run eject`
+ const URL = `https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2-1`;
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+ const response = await axios({
+    url: URL,
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.REACT_APP_HUGGING_FACE_API_KEY}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    data: JSON.stringify({
+      inputs: description, options: { wait_for_model: true },
+    }),
+    responseType: 'arraybuffer',
+ });
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ const type = response.headers['content-type'];
+ const data = response.data;
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+ const base64data = Buffer.from(data).toString('base64');
+ const img = `data:${type};base64,` + base64data;
+ setImage(img);
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+ return data;
+};
+```
 
-## Learn More
+### `Integration with the Application`
+This function is integrated into the application flow, allowing users to input a description, generate an image based on that description, and then proceed to mint the generated image as an NFT. The use of Axios for API requests and the Stable Diffusion AI model for image generation showcases the innovative use of AI in creating unique digital art pieces.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+By leveraging the Stable Diffusion API, your application can generate photo-realistic images from text inputs, providing a unique and engaging experience for users interested in digital art and collectibles. This integration not only enhances the functionality of your AI NFT Generator but also demonstrates the potential of AI in creative applications.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Security and Trust
 
-### Code Splitting
+AI NFT Generator places a high emphasis on security and trust. It uses secure practices for handling user data and transactions, ensuring that users' information is protected.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Acknowledgments
+- Special thanks to the Ethereum and Solidity communities for their support and resources.
+- Acknowledgment to Hugging Face for providing the AI model used for generating images.
+- Acknowledgment to NFT.Storage for providing a decentralized storage solution for NFTs.
